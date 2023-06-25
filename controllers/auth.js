@@ -52,10 +52,9 @@ const verifyEmail = async (req, res) => {
   await User.findByIdAndUpdate(user._id, {
     verify: true,
     verificationToken: null,
-    token,
   });
 
-  res.redirect(`${FRONTEND_URL}contacts`);
+  res.redirect(`${FRONTEND_URL}login`);
 };
 
 const resendVerifyEmail = async (req, res) => {
