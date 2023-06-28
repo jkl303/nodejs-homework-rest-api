@@ -12,7 +12,7 @@ const { SECRET_KEY, BASE_URL, FRONTEND_URL } = process.env;
 const avatarsDir = path.join(__dirname, "../", "public", "avatars");
 
 const register = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password } = req.user;
   const user = await User.findOne({ email });
   if (user) {
     throw HttpError(409, "Email in use");
