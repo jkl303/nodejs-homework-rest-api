@@ -105,14 +105,14 @@ const login = async (req, res) => {
 };
 
 const getCurrent = async (req, res) => {
-  const { persistedToken } = req.body;
+  const { persistedToken } = req.user;
   const user = await User.findOne({ token: persistedToken.slice(0, 8) });
   if (!user) {throw HttpError(404);}
   res.json({ user });
 };
 
 const logout = async (req, res) => {
-  const { _id } = req.user;
+  const { _id } = req.body;
   await User.findByIdAndUpdate(_id, { token: "" });
   res.status(204).send();
 };
