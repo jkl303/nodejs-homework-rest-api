@@ -105,7 +105,7 @@ const login = async (req, res) => {
 };
 
 const getCurrent = async (req, res) => {
-  const { persistedToken } = req.user;
+  const { persistedToken } = req.body;
   const user = await User.findOne({ token: persistedToken });
   if (!user) {throw HttpError(404);}
   res.json({ user });
